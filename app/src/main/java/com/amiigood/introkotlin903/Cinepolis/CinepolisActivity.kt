@@ -1,4 +1,4 @@
-package com.amiigood.introkotlin903.ejemplo1
+package com.amiigood.introkotlin903.Cinepolis
 
 import android.os.Bundle
 import android.view.View
@@ -23,7 +23,10 @@ class CinepolisActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cinepolis) // <-- PRIMERO
+
         enableEdgeToEdge()
+
         nombre = findViewById(R.id.nombre)
         cantidadCompradores = findViewById(R.id.cantidad)
         siRadio = findViewById(R.id.si)
@@ -32,7 +35,6 @@ class CinepolisActivity : AppCompatActivity() {
         resultado = findViewById(R.id.boletos)
         button = findViewById(R.id.calcular)
 
-        setContentView(R.layout.activity_cinepolis)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -40,7 +42,49 @@ class CinepolisActivity : AppCompatActivity() {
         }
     }
 
-    fun calcular(view: android.view.View){
 
+    fun calcular(view: View) {
+        val nombreCliente = nombre.text.toString()
+        val compradores = cantidadCompradores.text.toString().toIntOrNull()
+        val cantidad = cantidadBoletos.text.toString().toIntOrNull()
+
+        if(nombreCliente == ""){
+            resultado.text = "Debe ingresar un nombre"
+            return
+        }
+
+        if (compradores == null || compradores < 1) {
+            resultado.text = "Debe ingresar al menos 1 comprador."
+            return
+        }
+
+        if (cantidad == null || cantidad < 1) {
+            resultado.text = "Debe ingresar al menos 1 boleto."
+            return
+        }
+
+        val maxBoletos = compradores * 7
+
+        if (cantidad > maxBoletos) {
+            resultado.text = "Maximo permitido: $maxBoletos boletos para $compradores comprador(es)"
+            return
+        }
+
+        val precioBoleto = 12000
+        var total = cantidad * precioBoleto
+
+        total -= when {
+            cantidad > 5 -> (total * 0.15).toInt()
+            cantidad in 3..5 -> (total * 0.10).toInt()
+            else -> 0
+        }
+
+        if (siRadio.isChecked) {
+            total -= (total * 0.10).toInt()
+        }
+
+        resultado.text = "$nombreCliente, su total a pagar: $${total}"
     }
+
+
 }

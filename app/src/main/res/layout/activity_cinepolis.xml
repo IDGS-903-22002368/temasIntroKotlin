@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ejemplo1.CinepolisActivity">
+    tools:context=".Cinepolis.CinepolisActivity">
 
     <TextView
         android:id="@+id/nombreText"
@@ -91,7 +91,7 @@
         android:id="@+id/cantidadBoletosText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cantidad de compradores"
+        android:text="Cantidad de boletos"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="-130dp"
         android:textSize="20dp"
@@ -135,8 +135,9 @@
         android:id="@+id/calcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calcular"
         android:layout_marginTop="20dp"
+        android:onClick="calcular"
+        android:text="Calcular"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
