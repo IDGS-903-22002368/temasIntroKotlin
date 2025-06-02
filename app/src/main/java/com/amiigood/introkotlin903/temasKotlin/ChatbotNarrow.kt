@@ -3,13 +3,13 @@ package com.amiigood.introkotlin903.temasKotlin
 fun main() {
     val chatbot = NarrowChatbot()
 
-    println("Asistente Virtual: ¡Hola! ¿En que puedo ayudarte hoy?")
+    println("Asistente Virtual: Hola! En que puedo ayudarte hoy?")
     while (true) {
         print("Tu: ")
         val userInput = readLine()?.lowercase()?.trim() ?: break
 
         if (userInput == "salir") {
-            println("Asistente Virtual: ¡Gracias por tu visita!")
+            println("Asistente Virtual: Gracias por tu visita!")
             break
         }
 
@@ -24,11 +24,11 @@ class NarrowChatbot {
         val intent = detectIntent(message)
 
         return when (intent) {
-            Intent.GREETING -> "¡Hola! ¿Como puedo ayudarte?"
-            Intent.PRICING -> "Nuestros precios varian según el producto. ¿Qeé deseas consultar?"
+            Intent.GREETING -> "Hola! Como puedo ayudarte?"
+            Intent.PRICING -> "Nuestros precios varian según el producto. Que deseas consultar?"
             Intent.SCHEDULE -> "Nuestro horario es de lunes a viernes, de 9 AM a 6 PM."
-            Intent.FAREWELL -> "¡Hasta luego! Que tengas un buen dia."
-            Intent.UNKNOWN -> "Lo siento, no entendi tu mensaje. ¿Puedes reformularlo?"
+            Intent.FAREWELL -> "Hasta luego! Que tengas un buen dia."
+            Intent.UNKNOWN -> "Lo siento, no entendi tu mensaje. Puedes reformularlo?"
         }
     }
 
